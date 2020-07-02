@@ -31,6 +31,5 @@
 *.out
 *.app
 
-./benchmark
-./print
-
+benchmark
+print

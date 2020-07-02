@@ -15,9 +15,12 @@ public:
 	template <typename T=const std::initializer_list<const std::initializer_list<double> > >
 	ETMatrix(T ls) {
 		std::size_t rows = ls.size(), cols;
+		content.reserve(rows);
 		for (auto row: ls) {
 			cols = row.size(); // assume all rows of supplied matrix have the same size
+
 			std::vector<double> content_row;
+			content_row.reserve(cols);
 			for (auto cell: row) {
 				content_row.push_back(cell);
 			}
@@ -31,8 +34,10 @@ public:
 		shape = expr.shape;
 		std::size_t rows, cols;
 		std::tie(rows, cols) = shape;
+		content.reserve(rows);
 		for (size_t i = 0; i < rows; i++) {
 			std::vector<double> content_row;
+			content_row.reserve(cols);
 			for (size_t j = 0; j < cols; j++) {
 				content_row.push_back(expr(i, j));
 			}
