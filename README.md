@@ -22,16 +22,16 @@ The classes `CPPMatrix` and `ETMatrix` provide compatible interfaces and hence t
 
 To run the benchmark, use the command `make run`.
 
-For benchmarking, type-`double` square matrices with increasing sizes are randomly generated, and the performance of matrix addition with `CPPMatrix` and `ETMatrix` is measured. Note that the matrices generated are not necessarily the same for the benchmarking of `ETMatrix` and `CPPMatrix`.
+For benchmarking, type `double` square matrices with increasing sizes are randomly generated, and the performance of matrix addition with `CPPMatrix` and `ETMatrix` is measured. Note that the matrices generated are random and not necessarily the same for the benchmarking of `ETMatrix` and `CPPMatrix`.
 
-For different sizes of matrix `m` constructed from data randomly generated and stored in `vv`, the running time for the following code snippet with matrix class type T
+For different sizes of matrix `m` constructed from data randomly generated and stored in `vv`, the running time in milliseconds for the following code snippet with matrix class type T
 ```
 T m(vv);
 T msum;
 msum = m + (m + m) + (m + m + m) + (m + m + m + m) + (m + m + m + m + m)
 	+ (m + m + m + m + m + m) + (m + m + m + m + m + m + m);
 ```
-can be observed from the output of the command `make run`, which shows that **`ETMatrix` with expression templates is over 2x more performant than `CPPMatrix`** for all matrix sizes in the following case
+can be observed from the output of the command `make run`, which shows that **`ETMatrix` with expression templates is over 2x more performant than `CPPMatrix`** for all matrix sizes tested.
 
 ```
 g++ -std=c++14 -o ./benchmark ./benchmark.cpp
@@ -58,5 +58,9 @@ ETMatrix
 2560 10845.4ms
 ```
 
-Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be written.
+The time in milliseconds to compute the expression `msum` (including the time to initialize variables `m` and `msum` but not including the time to generate random element values) is then divided by the square of the size of matrix `m` (i.e. the number of elements in matrix `m`) to obtain the following bar plot.
+
+![Benchmark results bar plot](benchmark.png)
+
+Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be done.
 
