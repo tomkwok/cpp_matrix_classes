@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-std=c++14
+CFLAGS=-std=c++14 -O3
 
 benchmark:
 	$(CC) $(CFLAGS) -o ./benchmark ./benchmark.cpp

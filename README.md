@@ -31,36 +31,47 @@ T msum;
 msum = m + (m + m) + (m + m + m) + (m + m + m + m) + (m + m + m + m + m)
 	+ (m + m + m + m + m + m) + (m + m + m + m + m + m + m);
 ```
-can be observed from the output of the command `make run`, which shows that **`ETMatrix` with expression templates is over 2x more performant than `CPPMatrix`** for all matrix sizes tested.
+can be observed from the output of the command `make run` running on Arch Linux on a single thread of an AMD A8 Piledriver processor.
 
 ```
 g++ -std=c++14 -o ./benchmark ./benchmark.cpp
 ./benchmark
 CPPMatrix
-10 3.34575ms
-20 6.60417ms
-40 13.5116ms
-80 34.8754ms
-160 116.838ms
-320 418.349ms
-640 1464.65ms
-1280 5638.13ms
-2560 22200.2ms
+10 0.138753ms
+20 0.255431ms
+40 0.526563ms
+80 1.21358ms
+160 4.66485ms
+320 20.8913ms
+640 82.0911ms
+1280 317.967ms
+2560 1214.29ms
+5120 4784.7ms
 ETMatrix
-10 0.256554ms
-20 0.826062ms
-40 2.98548ms
-80 12.7522ms
-160 51.4254ms
-320 171.277ms
-640 679.507ms
-1280 2708ms
-2560 10845.4ms
+10 0.006982ms
+20 0.01512ms
+40 0.047863ms
+80 0.167892ms
+160 0.711511ms
+320 3.30981ms
+640 13.4519ms
+1280 52.7425ms
+2560 207.473ms
+5120 822.663ms
 ```
 
-The time in milliseconds to compute the expression `msum` (including the time to initialize variables `m` and `msum` but not including the time to generate random element values) is then divided by the square of the size of matrix `m` (i.e. the number of elements in matrix `m`) to obtain the following bar plot.
+The time in milliseconds to compute the expression `msum` (including the time to allocate memory for `m` and `msum` but not including the time to generate random element values) is then divided by the square of the size of matrix `m` (i.e. the number of elements in matrix `m`) to obtain the following bar plot.
 
-![Benchmark results bar plot](benchmark.png)
+![Bar plot of benchmark results on AMD A8 Piledriver](plot/benchmark_amd.png)
+
+The factor of speed up in using expression templates matrix `ETMatrix` over `CPPMatrix` converges to 5 as the matrix size grows.
+
+![Bar plot of factor of speed up with ETMatrix from benchmark results on AMD A8 Piledriver](plot/benchmark_amd_factor.png)
+
+The same benchmark running on Arch Linux on a single thread of an Intel Core i5 processor gives similar results. However, more iterations of benchmark are needed to average out the noise as observed in the following graphs generated from the output.
+
+![Bar plot of benchmark results on Intel Core i5](plot/benchmark_intel.png)
+
+![Bar plot of factor of speed up with ETMatrix from benchmark results on Intel Core i5](plot/benchmark_intel_factor.png)
 
 Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be done.
-

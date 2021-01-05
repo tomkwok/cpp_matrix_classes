@@ -10,7 +10,7 @@
 
 template <typename T>
 void benchmark() {
-	std::vector<std::size_t> sizes = {10, 20, 40, 80, 160, 320, 640, 1280, 2560};
+	std::vector<std::size_t> sizes = {10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120};
 
 	std::uniform_real_distribution<double> dist(-1000, 1000);
 
