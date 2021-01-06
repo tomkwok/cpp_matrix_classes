@@ -1,6 +1,13 @@
 # C++ matrix classes
 
-This repository contains the C++ matrix classes `CPPMatrix` and `ETMatrix`. Only matrix addition operation is implemented.
+This repository contains implementations of C++ matrix class. Currently only matrix addition operation is implemented.
+
+- C++ class `CPPMatrix` without expression templates
+- C++ class `ETMatrix` with expression templates
+
+A LaTeX graphical illustration I made as a visual explanation of the difference in the approach to evaluation of matrix addition with and without expression templates is as follows.
+
+![Difference in the approach to evaluation of matrix addition with and without expression templates](plot/matrix_add.svg)
 
 ## Implementation notes
 
@@ -20,7 +27,7 @@ The classes `CPPMatrix` and `ETMatrix` provide compatible interfaces and hence t
 
 ## Benchmark
 
-To run the benchmark, use the command `make run`.
+To run the benchmark, use the command `make run`. Note that the command would compile C++ programs with `-O3` optimization turned on.
 
 For benchmarking, type `double` square matrices with increasing sizes are randomly generated, and the performance of matrix addition with `CPPMatrix` and `ETMatrix` is measured. Note that the matrices generated are random and not necessarily the same for the benchmarking of `ETMatrix` and `CPPMatrix`.
 
