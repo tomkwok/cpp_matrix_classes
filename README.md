@@ -69,16 +69,16 @@ ETMatrix
 
 The time in milliseconds to compute the expression `msum` (including the time to allocate memory for `m` and `msum` but not including the time to generate random element values) is then divided by the square of the size of matrix `m` (i.e. the number of elements in matrix `m`) to obtain the following bar plot.
 
-![Bar plot of benchmark results on AMD A8 Piledriver](plot/benchmark_amd.png)
+![Bar plot of benchmark results on AMD A8 Piledriver](plot/benchmark_amd.svg)
 
 The factor of speed up in using expression templates matrix `ETMatrix` over `CPPMatrix` converges to 5 as the matrix size grows.
 
-![Bar plot of factor of speed up with ETMatrix from benchmark results on AMD A8 Piledriver](plot/benchmark_amd_factor.png)
+![Bar plot of factor of speed up with ETMatrix from benchmark results on AMD A8 Piledriver](plot/benchmark_amd_factor.svg)
 
 The same benchmark running on Arch Linux on a single thread of an Intel Core i5 processor gives similar results. However, more iterations of benchmark are needed to average out the noise as observed in the following graphs generated from the output.
 
-![Bar plot of benchmark results on Intel Core i5](plot/benchmark_intel.png)
+![Bar plot of benchmark results on Intel Core i5](plot/benchmark_intel.svg)
 
-![Bar plot of factor of speed up with ETMatrix from benchmark results on Intel Core i5](plot/benchmark_intel_factor.png)
+![Bar plot of factor of speed up with ETMatrix from benchmark results on Intel Core i5](plot/benchmark_intel_factor.svg)
 
 Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be done.
