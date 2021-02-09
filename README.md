@@ -1,11 +1,11 @@
-# C++ matrix classes
+# Expression Template matrix in C++ experiment
 
-This repository contains implementations of C++ matrix class. Currently only matrix addition operation is implemented.
+This repository contains implementations of C++ matrix class as part of an experiment. Currently only matrix addition operation is implemented.
 
 - C++ class `CPPMatrix` without expression templates
 - C++ class `ETMatrix` with expression templates
 
-A LaTeX graphical illustration I made as a visual explanation of the difference in the approach to evaluation of matrix addition with and without expression templates is as follows.
+I made a LaTeX graphical illustration to highlight the difference in the approach to evaluation of matrix addition with and without expression templates:
 
 ![Difference in the approach to evaluation of matrix addition with and without expression templates](plot/matrix_add.svg)
 
@@ -15,7 +15,7 @@ Class definitions can be found in the C++ header files `CPPMatrix.hpp` and `ETMa
 
 It is assumed that the lengths/sizes of all initializer lists (one initializer list for a row) are the same for a matrix, i.e. a matrix supplied to the constructor for `CPPMatrix` or `ETMatrix` is rectangular and well-formed, and therefore checking is not performed in that regard.
 
-Since the scale of this project is small, for simplicity, all files are stored in the root folder of the repository, and `namespace`s are not declared in the code.
+To maintain the simplicity of this small-scale project, all files are stored in the root folder of the repository, and `namespace`s are not declared in the code.
 
 In `CPPMatrix`, `std::plus` and  `std::transform` are used along with operator overloading to implement the addition operation for two matrices. As an alternative, C++20 features may be used.
 
@@ -27,7 +27,7 @@ The classes `CPPMatrix` and `ETMatrix` provide compatible interfaces and hence t
 
 ## Benchmark
 
-To run the benchmark, use the command `make run`. Note that the command would compile C++ programs with `-O3` optimization turned on.
+To run the benchmark, use the command `make run`. Note that C++ programs would be compile with `-O3` optimization turned on.
 
 For benchmarking, type `double` square matrices with increasing sizes are randomly generated, and the performance of matrix addition with `CPPMatrix` and `ETMatrix` is measured. Note that the matrices generated are random and not necessarily the same for the benchmarking of `ETMatrix` and `CPPMatrix`.
 
@@ -75,10 +75,16 @@ The factor of speed up in using expression templates matrix `ETMatrix` over `CPP
 
 ![Bar plot of factor of speed up with ETMatrix from benchmark results on AMD A8 Piledriver](plot/benchmark_amd_factor.svg)
 
-The same benchmark running on Arch Linux on a single thread of an Intel Core i5 processor gives similar results. However, more iterations of benchmark are needed to average out the noise as observed in the following graphs generated from the output.
+---
+
+The same benchmark running on Arch Linux on a single thread of an Intel Core i5 processor gives similar results. However, more iterations of benchmark are needed to average out the noise observed in the following graphs generated from the output.
 
 ![Bar plot of benchmark results on Intel Core i5](plot/benchmark_intel.svg)
 
 ![Bar plot of factor of speed up with ETMatrix from benchmark results on Intel Core i5](plot/benchmark_intel_factor.svg)
 
 Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be done.
+
+### External links
+
+- A relevant detailed academic study on the memory and computational performance of C++ expression templates is [Expression Templates Revisited: A Performance Analysis of the Current ET Methodology](https://arxiv.org/pdf/1104.1729.pdf).
