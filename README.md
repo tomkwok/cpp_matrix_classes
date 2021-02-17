@@ -1,5 +1,13 @@
 # Expression Template matrix in C++ experiment
 
+[![Build status][img_build_status]][build_status] &nbsp; [![Language grade: C/C++][img_lgtm]][lgtm]
+
+[img_build_status]: https://github.com/tomkwok/etmatrix-cpp/workflows/etmatrix-cpp/badge.svg
+[build_status]: https://github.com/tomkwok/etmatrix-cpp/actions?query=branch%3Amaster
+
+[img_lgtm]: https://img.shields.io/lgtm/grade/cpp/g/tomkwok/etmatrix-cpp.svg?logo=lgtm&logoWidth=18
+[lgtm]: https://lgtm.com/projects/g/tomkwok/etmatrix-cpp/latest/files/
+
 This repository contains implementations of C++ matrix class as part of an experiment. Currently only matrix addition operation is implemented.
 
 - C++ class `CPPMatrix` without expression templates
@@ -83,7 +91,7 @@ The same benchmark running on Arch Linux on a single thread of an Intel Core i5 
 
 ![Bar plot of factor of speed up with ETMatrix from benchmark results on Intel Core i5](plot/benchmark_intel_factor.svg)
 
-Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be done.
+Note that the expression `msum` evaluated is hardcoded in the benchmark. Benchmarking code for investigation of the effect of the length and complexity of the expression on the performance of evaluation is yet to be completed.
 
 ### External links
 
