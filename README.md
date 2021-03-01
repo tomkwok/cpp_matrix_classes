@@ -1,12 +1,15 @@
 # Expression Template matrix in C++ experiment
 
-[![Build status][img_build_status]][build_status] &nbsp; [![Language grade: C/C++][img_lgtm]][lgtm]
+[![Build status][img_build_status]][build_status] [![Language grade: C/C++][img_lgtm]][lgtm] [![Technical debt][img_sonar]][sonar]
 
 [img_build_status]: https://github.com/tomkwok/etmatrix-cpp/workflows/etmatrix-cpp/badge.svg
 [build_status]: https://github.com/tomkwok/etmatrix-cpp/actions?query=branch%3Amaster
 
 [img_lgtm]: https://img.shields.io/lgtm/grade/cpp/g/tomkwok/etmatrix-cpp.svg?logo=lgtm&logoWidth=18
 [lgtm]: https://lgtm.com/projects/g/tomkwok/etmatrix-cpp/latest/files/
+
+[img_sonar]: https://img.shields.io/sonar/tech_debt/tomkwok_etmatrix-cpp?logo=sonarsource&server=https%3A%2F%2Fsonarcloud.io
+[sonar]: https://sonarcloud.io/dashboard?id=tomkwok_etmatrix-cpp
 
 This repository contains implementations of C++ matrix class as part of an experiment. Currently only matrix addition operation is implemented.
 
