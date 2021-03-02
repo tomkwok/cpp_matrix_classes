@@ -5,16 +5,16 @@
 #include <iostream>
 
 class ETMatrix {
-private:
-	std::vector<std::vector<double> > content;
 public:
+	std::vector<std::vector<double> > content;
 	std::tuple<std::size_t, std::size_t> shape;
 
-	ETMatrix() {};
+	ETMatrix() = default;
 	
 	template <typename T=const std::initializer_list<const std::initializer_list<double> > >
-	ETMatrix(T ls) {
-		std::size_t rows = ls.size(), cols;
+	explicit ETMatrix(T ls) {
+		std::size_t rows = ls.size();
+		std::size_t cols;
 		content.reserve(rows);
 		for (auto row: ls) {
 			cols = row.size(); // assume all rows of supplied matrix have the same size
@@ -32,7 +32,8 @@ public:
 	template <typename EXPR>
 	ETMatrix& operator=(EXPR const&expr) {
 		shape = expr.shape;
-		std::size_t rows, cols;
+		std::size_t rows;
+		std::size_t cols;
 		std::tie(rows, cols) = shape;
 		content.reserve(rows);
 		for (size_t i = 0; i < rows; i++) {
@@ -54,8 +55,8 @@ public:
 };
 
 std::ostream& operator<<(std::ostream &out, const ETMatrix &m) {
-	for (auto row: m.content) {
-		for (auto cell: row) {
+	for (const auto& row: m.content) {
+		for (const auto& cell: row) {
 			out << cell << " ";
 		}
 		out << std::endl;
@@ -65,15 +66,12 @@ std::ostream& operator<<(std::ostream &out, const ETMatrix &m) {
 
 template <typename LHS, typename RHS>
 class ETMatrixAdd {
-private:
+public:
 	const LHS& lhs;
 	const RHS& rhs;
-public:
 	std::tuple<std::size_t, std::size_t> shape;
 
-	ETMatrixAdd(LHS const&lhs, RHS const&rhs) : lhs(lhs), rhs(rhs) {
-		shape = lhs.shape;
-	};
+	ETMatrixAdd(LHS const&lhs, RHS const&rhs) : lhs(lhs), rhs(rhs), shape(lhs.shape) {};
 
 	auto operator()(size_t row, size_t col) const {
 		assert(lhs.shape == rhs.shape);

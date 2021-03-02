@@ -18,9 +18,9 @@ void benchmark() {
 		std::cout << size << " ";
 
 		std::vector<std::vector<double> > vv(size);
-		std::generate(vv.begin(), vv.end(), [size, dist]() mutable {
+		std::generate(vv.begin(), vv.end(), [&size, &dist]() mutable {
 			std::vector<double> v(size);
-			std::generate(v.begin(), v.end(), [dist]() mutable {
+			std::generate(v.begin(), v.end(), [&dist]() mutable {
 				auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
 				std::mt19937 engine(seed);
 				return dist(engine);

@@ -2,6 +2,8 @@ CC?=gcc
 CXX?=g++
 CFLAGS=-std=c++14 -O3
 
+all: benchmark print
+
 benchmark:
 	$(CXX) $(CFLAGS) -o ./benchmark ./benchmark.cpp
 
@@ -16,7 +18,5 @@ demo: print
 
 clean:
 	rm ./benchmark ./print
-
-all: benchmark print
 
 .PHONY: all run clean

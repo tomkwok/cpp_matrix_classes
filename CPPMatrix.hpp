@@ -9,12 +9,12 @@
 class CPPMatrix {
 private:
 	std::vector<std::vector<double> > content;
-	friend const CPPMatrix operator+(const CPPMatrix &m1, const CPPMatrix &m2);
+	friend CPPMatrix operator+(const CPPMatrix &m1, const CPPMatrix &m2);
 public:
-	CPPMatrix() {}
+	CPPMatrix() = default;
 
 	template <typename T=const std::initializer_list<const std::initializer_list<double> > >
-	CPPMatrix(T ls) {
+	explicit CPPMatrix(T ls) {
 		for (auto row: ls) {
 			std::vector<double> content_row;
 			content.reserve(ls.size());
@@ -30,8 +30,8 @@ public:
 };
 
 std::ostream& operator<<(std::ostream &out, const CPPMatrix &m) {
-	for (auto row: m.content) {
-		for (auto cell: row) {
+	for (const auto& row: m.content) {
+		for (const auto& cell: row) {
 			out << cell << " ";
 		}
 		out << std::endl;
@@ -39,7 +39,7 @@ std::ostream& operator<<(std::ostream &out, const CPPMatrix &m) {
 	return out;
 }
 
-const std::vector<double> vsum(const std::vector<double> &v1, const std::vector<double> &v2) {
+std::vector<double> vsum(const std::vector<double> &v1, const std::vector<double> &v2) {
 	assert(v1.size() == v2.size());
 	std::vector<double> result;
 	result.reserve(v1.size());
@@ -48,7 +48,7 @@ const std::vector<double> vsum(const std::vector<double> &v1, const std::vector<
 	return result;
 }
 
-const CPPMatrix operator+(const CPPMatrix &m1, const CPPMatrix &m2) {
+CPPMatrix operator+(const CPPMatrix &m1, const CPPMatrix &m2) {
 	assert(m1.content.size() == m2.content.size());
 	CPPMatrix result({});
 	result.content.reserve(m1.content.size());
